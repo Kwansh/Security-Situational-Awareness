@@ -1,0 +1,63 @@
+﻿services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        BASE_IMAGE: ${BASE_IMAGE:-python:3.10-slim}
+    image: security-situational-awareness:4.1.0
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+    environment:
+      MODEL_ARTIFACT_PATH: /app/data/models/model_artifacts.pkl
+      API_HOST: 0.0.0.0
+      API_PORT: 8000
+      MAX_RECENT_EVENTS: 10000
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=3)"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 20s
+
+  detector:
+    image: security-situational-awareness:4.1.0
+    depends_on:
+      api:
+        condition: service_healthy
+    command:
+      - python
+      - scripts/continuous_detector.py
+      - --watch-dir
+      - /app/data/ingest
+      - --api-base
+      - http://api:8000
+      - --poll-interval
+      - "0.5"
+      - --poll-jitter-ratio
+      - "0.4"
+      - --max-rows-per-cycle
+      - "50"
+      - --process-existing
+      - --traffic-mode
+      - burst
+      - --dispatch-interval
+      - "0.02"
+      - --dispatch-jitter-ratio
+      - "0.8"
+      - --burst-size-min
+      - "3"
+      - --burst-size-max
+      - "18"
+      - --burst-pause-min
+      - "0.1"
+      - --burst-pause-max
+      - "1.2"
+    volumes:
+      - ./data:/app/data
+      - ./results:/app/results
+    restart: unless-stopped

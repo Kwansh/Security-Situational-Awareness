@@ -1,0 +1,2 @@
+file,rows,accuracy,precision_weighted,recall_weighted,f1_weighted,mean_confidence,min_confidence,max_confidence,true_classes,pred_classes
+Portmap.csv,191694,0.7387346500151283,1.0,0.7387346500151283,0.849164333188698,0.7464452370790796,0.4743701258996829,0.9999505281448364,2,3

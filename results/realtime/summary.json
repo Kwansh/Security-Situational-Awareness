@@ -1,0 +1,42 @@
+{
+  "total_events": 244,
+  "attack_events": 244,
+  "benign_events": 0,
+  "attack_ratio": 1.0,
+  "labels": {
+    "Portmap": 244
+  },
+  "sources": {
+    "mixed_replay": 74,
+    "replay": 170
+  },
+  "last_event": {
+    "event_uid": "2eec548c5ce24e25",
+    "timestamp": "2026-04-28T10:17:09.038705+00:00",
+    "prediction": 4,
+    "prediction_label": "Portmap",
+    "confidence": 0.690587204077278,
+    "is_attack": true,
+    "severity": "medium",
+    "source": "replay",
+    "input_kind": "record",
+    "client_ip": "127.0.0.1",
+    "geo": {
+      "provider": "ipapi.co",
+      "ip": "127.0.0.1",
+      "resolved": false,
+      "latitude": null,
+      "longitude": null,
+      "city": null,
+      "region": null,
+      "country": null,
+      "country_code": null,
+      "timezone": null,
+      "reason": "non_public_ip"
+    },
+    "pkt_len": 229.0,
+    "syn_count": 0.0,
+    "udp_count": 2000000.0,
+    "llm_report": "1. 检测结果：本次检测判定为攻击（True），攻击类型为未知异常流量，置信度为0.69，风险等级未明确标注（None），系统摘要为空。当前流量行为偏离基线，但无法关联已知攻击特征，可能为未入库的新型攻击、变异攻击或异常业务流量。\n\n2. 攻击说明：该异常流量未匹配现有攻击特征库，典型技术特征暂无具体指标。推测攻击者可能采用自定义协议、加密载荷或低频慢速扫描等规避检测手段，意在绕过传统规则引擎，实现信息探测、隐蔽渗透或拒绝服务等目的。\n\n3. 风险危害：存在潜在安全风险，可能引发未定义的服务异常、系统资源占用异常、数据泄露风险或后续渗透攻击。由于攻击模式未知，若未及时处置，可能对业务连续性与数据完整性造成不可预见的损害。\n\n4. 防御建议：立即启用增强型流量日志记录，将所有异常会话的源IP、目标端口、载荷摘要存入长期存储；提升检测引擎敏感度至最高级别，临时封禁该异常源IP地址；对相关流量进行离线深度包分析与协议逆向，提取特征并同步更新威胁库；同时隔离受影响系统，审查周边防火墙与IDS规则，确保无横向扩散风险。"
+  }
+}

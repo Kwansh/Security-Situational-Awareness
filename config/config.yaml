@@ -1,0 +1,131 @@
+﻿# Network Security Situational Awareness System - Configuration (4.1.0)
+
+paths:
+  data_dir: data
+  raw_dir: data/raw
+  processed_dir: data/processed
+  models_dir: data/models
+  results_dir: results
+  figures_dir: results/figures
+
+rule_thresholds:
+  syn_flood_per_sec: 500
+  udp_flood_per_min: 10000
+  dns_flood_per_sec: 2000
+  ntp_flood_per_min: 5000
+  sql_injection_min_matches: 2
+
+sql_injection_keywords:
+  - union
+  - select
+  - or 1=1
+  - drop
+  - insert
+  - update
+  - delete
+  - --
+  - ;
+
+standard_features:
+  names:
+    - pkt_rate
+    - syn_rate
+    - udp_rate
+    - dns_rate
+    - ntp_rate
+    - avg_pkt_size
+  window_seconds: 1
+
+feature_selection:
+  enabled: true
+  k_best: 30
+  method: f_classif
+
+model_config:
+  random_forest:
+    n_estimators: 200
+    max_depth: 20
+    class_weight: balanced
+    random_state: 42
+  xgboost:
+    n_estimators: 200
+    max_depth: 8
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+  extra_trees:
+    n_estimators: 200
+    max_depth: 20
+    class_weight: balanced
+    random_state: 42
+  lightgbm:
+    n_estimators: 200
+    learning_rate: 0.05
+    num_leaves: 31
+    subsample: 0.8
+    colsample_bytree: 0.8
+    random_state: 42
+
+ensemble_config:
+  enabled: true
+  method: voting
+  models:
+    - random_forest
+    - xgboost
+  voting: soft
+
+audit:
+  version: 4.1.0
+  maintainer: SSA Team
+
+training:
+  test_size: 0.2
+  validation_size: 0.2
+  random_state: 42
+  scale_features: true
+  max_rows_per_file: 200000
+  max_files: null
+
+online_learning:
+  enabled: false
+  stream_chunk_size: 50000
+  buffer_rows: 200000
+  hot_reload: true
+  backup_on_update: true
+
+alerting:
+  enabled: false
+  trigger_on_detection: true
+  trigger_on_batch: true
+  retries: 3
+  retry_delay_seconds: 2
+  timeout_seconds: 10
+  templates:
+    detection: |
+      [安全告警]
+      时间: {timestamp}
+      攻击类型: {attack_type}
+      严重度: {severity}
+      置信度: {confidence:.4f}
+      来源: {source}
+      输入类型: {input_kind}
+      摘要: {summary}
+    batch: |
+      [批量告警]
+      时间: {timestamp}
+      总事件: {total_events}
+      攻击事件: {attack_events}
+      正常事件: {benign_events}
+      攻击比例: {attack_ratio:.2%}
+  channels: []
+
+explainability:
+  enabled: true
+  include_feature_importance: true
+  include_rule_triggers: true
+
+system:
+  name: 网络安全态势感知系统
+  version: 4.1.0
+  description: 基于规则引擎和机器学习的网络攻击检测与态势感知系统

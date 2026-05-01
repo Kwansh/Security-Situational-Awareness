@@ -1,0 +1,146 @@
+{
+  "generated_at": "2026-04-27T07:04:41.983698+00:00",
+  "requested_artifact": "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\models\\model_artifacts_latest.pkl",
+  "resolved_artifact": "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\models\\model_artifacts_latest.pkl",
+  "input_path": "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw",
+  "csv_files": [
+    "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\LDAP.csv",
+    "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\MSSQL.csv",
+    "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\NetBIOS.csv",
+    "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\Portmap.csv",
+    "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\Syn.csv",
+    "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\UDP.csv",
+    "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\UDPLag.csv"
+  ],
+  "file_count": 7,
+  "row_count": 20364525,
+  "labels": [
+    "NORMAL",
+    "SYNFLOOD",
+    "PORTSCAN",
+    "DDOS_HTTP",
+    "NETBIOS",
+    "BENIGN",
+    "LDAP",
+    "MSSQL",
+    "PORTMAP",
+    "SYN",
+    "UDP",
+    "UDPLAG"
+  ],
+  "confidence": {
+    "mean": 0.764868931307423,
+    "min": 0.66,
+    "max": 0.91,
+    "rows": 20364525
+  },
+  "overall_metrics": {
+    "accuracy": 0.0,
+    "precision_weighted": 0.0,
+    "recall_weighted": 0.0,
+    "f1_weighted": 0.0,
+    "precision_macro": 0.0,
+    "recall_macro": 0.0,
+    "f1_macro": 0.0,
+    "balanced_accuracy": 0.0,
+    "support": 20364525,
+    "per_class": {
+      "NORMAL": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "SYNFLOOD": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0,
+        "predicted": 20364525,
+        "true_positive": 0
+      },
+      "PORTSCAN": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "DDOS_HTTP": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "NETBIOS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3657497,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "BENIGN": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 56965,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "LDAP": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1915122,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "MSSQL": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 5787453,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "PORTMAP": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 186960,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "SYN": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 4891500,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "UDP": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 3867155,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "UDPLAG": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 1873,
+        "predicted": 0,
+        "true_positive": 0
+      }
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "generated_at": "2026-04-26T05:25:35.464322+00:00",
+  "requested_artifact": "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\models\\model_artifacts_latest.pkl",
+  "resolved_artifact": "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\models\\model_artifacts.pkl",
+  "input_path": "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\Portmap.csv",
+  "csv_files": [
+    "F:\\security-situational-awareness-ultimate-iter3\\security-situational-awareness-ultimate\\data\\raw\\Portmap.csv"
+  ],
+  "file_count": 1,
+  "row_count": 191694,
+  "labels": [
+    "BENIGN",
+    "LDAP",
+    "MSSQL",
+    "NETBIOS",
+    "PORTMAP"
+  ],
+  "confidence": {
+    "mean": 0.7464452370790796,
+    "min": 0.4743701258996829,
+    "max": 0.9999505281448364,
+    "rows": 191694
+  },
+  "overall_metrics": {
+    "accuracy": 0.7387346500151283,
+    "precision_weighted": 1.0,
+    "recall_weighted": 0.7387346500151283,
+    "f1_weighted": 0.849164333188698,
+    "precision_macro": 0.4,
+    "recall_macro": 0.34642383397518184,
+    "f1_macro": 0.36906900693867595,
+    "balanced_accuracy": 0.34642383397518184,
+    "support": 191694,
+    "per_class": {
+      "BENIGN": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 4734,
+        "predicted": 4734,
+        "true_positive": 4734
+      },
+      "LDAP": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "MSSQL": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0,
+        "predicted": 0,
+        "true_positive": 0
+      },
+      "NETBIOS": {
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "support": 0,
+        "predicted": 50083,
+        "true_positive": 0
+      },
+      "PORTMAP": {
+        "precision": 1.0,
+        "recall": 0.7321191698759093,
+        "f1": 0.8453450346933797,
+        "support": 186960,
+        "predicted": 136877,
+        "true_positive": 136877
+      }
+    }
+  }
+}
