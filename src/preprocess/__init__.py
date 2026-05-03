@@ -1,4 +1,4 @@
-"""预处理模块"""
+"""Preprocessing package."""
 
 from .preprocessor import Preprocessor
 

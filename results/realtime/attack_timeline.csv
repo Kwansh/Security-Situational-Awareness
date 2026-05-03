@@ -243,3 +243,9 @@ timestamp,prediction_label,confidence,is_attack,severity,source
 2026-04-28T10:16:54.537256+00:00,Portmap,0.690268,1,medium,replay
 2026-04-28T10:17:02.876074+00:00,Portmap,0.683589,1,medium,replay
 2026-04-28T10:17:09.038705+00:00,Portmap,0.690587,1,medium,replay
+2026-05-03T17:38:02.697300+00:00,Portmap,0.559648,1,low,api
+2026-05-03T17:38:31.862457+00:00,Portmap,0.701184,1,medium,replay
+2026-05-03T17:38:38.511480+00:00,Portmap,0.674365,1,medium,replay
+2026-05-03T17:38:45.858542+00:00,LDAP,0.833208,1,high,replay
+2026-05-03T17:38:53.075308+00:00,Portmap,0.874481,1,high,replay
+2026-05-03T17:38:56.509313+00:00,Portmap,0.687801,1,medium,replay

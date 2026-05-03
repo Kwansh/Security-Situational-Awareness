@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """API startup script."""
 
 from __future__ import annotations
@@ -36,9 +35,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-=======
-import uvicorn
-
-if __name__ == "__main__":
-    uvicorn.run("src.api.server:app", host="0.0.0.0", port=8000, reload=True)
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39

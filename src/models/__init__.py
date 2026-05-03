@@ -1,7 +1,5 @@
-﻿"""Model module exports."""
+"""Model package exports."""
 
-from .ensemble import EnsembleModel
-from .online_trainer import OnlineTrainer, OnlineTrainingResult
-from .trainer import ModelTrainer
+from .ensemble import EnsembleClassifier, EnsembleModel, SoftVotingModel
 
-__all__ = ["EnsembleModel", "ModelTrainer", "OnlineTrainer", "OnlineTrainingResult"]
+__all__ = ["EnsembleClassifier", "EnsembleModel", "SoftVotingModel"]
