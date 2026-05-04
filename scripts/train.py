@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ﻿#!/usr/bin/env python3
 """Training script for the security situational awareness model."""
 
@@ -7,15 +6,10 @@ import json
 import shutil
 import sys
 import time
-=======
-﻿import argparse
-import json
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
 from pathlib import Path
 
 from sklearn.model_selection import train_test_split
 
-<<<<<<< HEAD
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
@@ -39,30 +33,16 @@ DEFAULT_MAX_ROWS_PER_FILE = 200000
 def _stage_log(message: str) -> None:
     now = time.strftime("%H:%M:%S")
     print(f"[{now}] {message}", flush=True)
-=======
-from src.data_loader import DatasetLoader
-from src.ensemble_model import EnsembleModel
-from src.evaluator import Evaluator
-from src.feature_selector import FeatureSelector
-from src.model_artifacts import DEFAULT_ARTIFACT_NAME, save_artifacts
-from src.model_trainer import ModelTrainer
-from src.preprocess import Preprocessor
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
 
 
 def build_training_pipeline(
     data_dir: str,
-<<<<<<< HEAD
     input_format: str = "csv",
     k_features: int = 0,
-=======
-    k_features: int = 30,
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
     use_stacking: bool = False,
     test_size: float = 0.2,
     random_state: int = 42,
     max_files: int | None = None,
-<<<<<<< HEAD
     max_rows_per_file: int | None = DEFAULT_MAX_ROWS_PER_FILE,
     chunk_size: int = 50000,
     label_manifest: str | None = None,
@@ -119,16 +99,6 @@ def build_training_pipeline(
 
     if verbose:
         _stage_log("Stage 3/7 - Splitting train/test sets...")
-=======
-):
-    loader = DatasetLoader(data_dir)
-    df = loader.load_all(max_files=max_files)
-
-    preprocessor = Preprocessor()
-    df = preprocessor.clean(df)
-    X, y = preprocessor.split(df)
-
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
     X_train, X_test, y_train, y_test = train_test_split(
         X,
         y,
@@ -136,7 +106,6 @@ def build_training_pipeline(
         random_state=random_state,
         stratify=y if y.nunique() > 1 else None,
     )
-<<<<<<< HEAD
     if verbose:
         _stage_log(f"Split done: train={X_train.shape}, test={X_test.shape}")
         _stage_log(
@@ -219,43 +188,22 @@ def build_training_pipeline(
         )
         _stage_log(f"Visualization saved: {figures}")
 
-=======
-
-    X_train_scaled = preprocessor.normalize(X_train.values, fit=True)
-    X_test_scaled = preprocessor.normalize(X_test.values, fit=False)
-
-    selector = FeatureSelector(k=k_features)
-    X_train_selected = selector.fit_transform(X_train_scaled, y_train.values)
-    X_test_selected = selector.transform(X_test_scaled)
-
-    trainer = ModelTrainer(random_state=random_state).train_models(X_train_selected, y_train.values)
-    ensemble = EnsembleModel(
-        {"rf": trainer.rf, "xgb": trainer.xgb},
-        use_stacking=use_stacking,
-    ).fit(X_train_selected, y_train.values)
-
-    metrics = Evaluator.evaluate(ensemble, X_test_selected, y_test.values)
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
     return {
         "ensemble": ensemble,
         "preprocessor": preprocessor,
         "selector": selector,
         "metrics": metrics,
         "feature_columns": preprocessor.feature_columns,
-<<<<<<< HEAD
         "selected_feature_count": int(X_train_selected.shape[1]),
         "raw_feature_count": int(X.shape[1]),
         "row_count": int(len(df)),
         "max_rows_per_file": max_rows_per_file,
         "figures": figures,
-=======
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
     }
 
 
 def main():
     parser = argparse.ArgumentParser(description="Train the DDoS detection model.")
-<<<<<<< HEAD
     parser.add_argument(
         "--data_dir",
         "--input",
@@ -344,26 +292,11 @@ def main():
     result = build_training_pipeline(
         data_dir=args.data_dir,
         input_format=args.input_format,
-=======
-    parser.add_argument("--data_dir", "--input", dest="data_dir", type=str, default="data/raw", help="Input data directory.")
-    parser.add_argument("--output_dir", type=str, default="data/models", help="Output directory.")
-    parser.add_argument("--output_path", "--output", dest="output_path", type=str, default="", help="Artifact output path.")
-    parser.add_argument("--k_features", type=int, default=30, help="Number of selected features.")
-    parser.add_argument("--use_stacking", action="store_true", help="Enable stacking ensemble.")
-    parser.add_argument("--test_size", type=float, default=0.2, help="Validation split ratio.")
-    parser.add_argument("--random_state", type=int, default=42, help="Random seed.")
-    parser.add_argument("--max_files", type=int, default=None, help="Optional CSV file limit.")
-    args = parser.parse_args()
-
-    result = build_training_pipeline(
-        data_dir=args.data_dir,
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
         k_features=args.k_features,
         use_stacking=args.use_stacking,
         test_size=args.test_size,
         random_state=args.random_state,
         max_files=args.max_files,
-<<<<<<< HEAD
         max_rows_per_file=args.max_rows_per_file,
         chunk_size=args.chunk_size,
         label_manifest=args.label_manifest or None,
@@ -384,21 +317,12 @@ def main():
     )
     save_artifacts(
         timestamped_artifact_path,
-=======
-    )
-
-    output_dir = Path(args.output_dir)
-    artifact_path = Path(args.output_path) if args.output_path else output_dir / DEFAULT_ARTIFACT_NAME
-    save_artifacts(
-        artifact_path,
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
         model=result["ensemble"],
         scaler=result["preprocessor"].scaler,
         selector=result["selector"],
         feature_columns=result["feature_columns"],
         label_mapping=result["preprocessor"].label_mapping,
         metrics=result["metrics"],
-<<<<<<< HEAD
         preprocessor=result["preprocessor"],
     )
     shutil.copy2(timestamped_artifact_path, latest_artifact_path)
@@ -437,18 +361,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-=======
-    )
-
-    output_dir.mkdir(parents=True, exist_ok=True)
-    metrics_path = output_dir / "metrics.json"
-    metrics_to_store = {key: value for key, value in result["metrics"].items() if key != "report"}
-    metrics_path.write_text(json.dumps(metrics_to_store, indent=2), encoding="utf-8")
-
-    print(f"Saved model artifacts to {artifact_path}")
-    print(json.dumps(metrics_to_store, indent=2))
-
-
-if __name__ == "__main__":
-    main()
->>>>>>> e7862cd2291f87b9b6b2df0f04c4bd5cedbfdc39
